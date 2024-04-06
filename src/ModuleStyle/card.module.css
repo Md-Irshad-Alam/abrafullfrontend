@@ -1,0 +1,14 @@
+.mainCard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.cardInner {
+  display: grid;
+  grid-template-columns: repeat(1, 5);
+}
+.imagecnt {
+}
+.content {
+}
