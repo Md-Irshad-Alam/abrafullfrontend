@@ -26,11 +26,15 @@ function Profile() {
 
     if (name || avatar) {
       axios
-        .put(`http://localhost:6060/auth/update/${id}`, formdata, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
+        .put(
+          `https://abrabackendapp.onrender.com/auth/update/${id}`,
+          formdata,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        )
 
         .then((res) => toast.success('profile updated'))
         .catch((error) => toast.error('profile is not updated'));

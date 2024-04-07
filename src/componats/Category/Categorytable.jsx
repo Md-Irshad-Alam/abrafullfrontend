@@ -14,7 +14,7 @@ function CategoryHome() {
 
   const handlesubmit = (id) => {
     axios
-      .delete(`http://localhost:6060/categories/${id}`)
+      .delete(`https://abrabackendapp.onrender.com//categories/${id}`)
 
       .then((res) => {
         window.location.reload();

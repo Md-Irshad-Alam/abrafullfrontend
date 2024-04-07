@@ -12,7 +12,7 @@ function ViewCategory() {
     try {
       if (loggedUser) {
         axios
-          .get(`http://localhost:6060/categories/single/${id}`)
+          .get(`https://abrabackendapp.onrender.com/categories/single/${id}`)
           .then((res) => setdata(res.data))
           .catch((error) => window.alert('something went wrong !'));
       }
