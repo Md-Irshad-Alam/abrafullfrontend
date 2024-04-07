@@ -7,13 +7,14 @@ import { LoginAPI, getallcategory, getproduct, getusers } from './User';
 
 export function AuthContextProvider({ children }) {
   const [loading, setloading] = useState(true);
+  const [Islogin, setlogin] = useState(false);
   const [loggedUser, setuser] = useState({});
   const [data, seetdata] = useState([]);
   const [categories, setcategory] = useState([]);
   const [product, setproduct] = useState([]);
   const [show, setshow] = useState(false);
   const navigate = useNavigate();
-  const token = localStorage.getItem('auth-token');
+
   function login(email, password) {
     LoginAPI(email, password)
       .then((response) => {
@@ -28,9 +29,10 @@ export function AuthContextProvider({ children }) {
         setloading(true);
       });
   }
+
   useEffect(() => {
     const token = localStorage.getItem('auth-token');
-    console.log(token);
+
     if (token) {
       getusers().then((responce) => {
         let userdata = responce.data.data;
@@ -46,6 +48,7 @@ export function AuthContextProvider({ children }) {
     if (token) {
       getallcategory().then((responce) => {
         let userdata = responce.data;
+
         const arrayofcategory = Object.keys(userdata).map((key) => ({
           id: key,
           name: userdata[key],
@@ -64,6 +67,7 @@ export function AuthContextProvider({ children }) {
   };
 
   const getProduct = () => {
+    const token = localStorage.getItem('auth-token');
     if (token) {
       getproduct()
         .then((res) => {
@@ -92,20 +96,21 @@ export function AuthContextProvider({ children }) {
     getProduct();
   }, [loggedUser]);
 
-  // function logout() {
-  //   const token = localStorage.getItem('auth-token');
-  //   loggedout(token)
-  //     .then((res) => {
-  //       toast.success('User successfully Logged out');
-  //       localStorage.removeItem('auth-token');
-  //       location.reload();
-  //       redirect('/auth/login');
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       toast.error('Faild to logged out');
-  //     });
-  // }
+  async function logout() {
+    try {
+      const token = localStorage.getItem('auth-token');
+      if (token) {
+        localStorage.removeItem('auth-token');
+        toast.success('User successfully Logged out');
+        navigate('/login');
+        window.location.reload();
+        setlogin(true);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Faild to logged out');
+    }
+  }
 
   return (
     <AuthContext.Provider
@@ -115,6 +120,7 @@ export function AuthContextProvider({ children }) {
         loggedUser,
         categories,
         product,
+        logout,
       }}
     >
       {children}

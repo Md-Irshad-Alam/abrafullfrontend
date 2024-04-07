@@ -1,51 +1,53 @@
 import React, { useContext, useState } from 'react';
 import style from '../ModuleStyle/Nav.module.css';
-import { FaCartPlus } from 'react-icons/fa';
-import { IoMdLogIn } from 'react-icons/io';
-import { AuthContext } from '../contexts/MyContxt';
-import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { FaUserTie } from 'react-icons/fa';
+import { MdLocalGroceryStore } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import Product from '../componats/Productcomp/Product';
+import { useNavigate } from 'react-router-dom';
+import CategorySlider from '../componats/Slider';
+import { AuthContext } from '../contexts/MyContxt';
+import Button from 'react-bootstrap/Button';
 function Navbar() {
-  const [ismodal, setmodel] = useState(false);
-
-  const handlemodal = () => {
-    setmodel(!ismodal);
+  const [show, setshow] = useState(false);
+  const handlshow = () => {
+    setshow(!show);
   };
-  const handlelogout = () => {
-    window.alert('user log out');
-  };
-
   const history = useNavigate();
-  const { loggedUser } = useContext(AuthContext);
+  const { logout, loggedUser } = useContext(AuthContext);
+  const handlelogout = () => {
+    if (!loggedUser) {
+      history('/login');
+      setshow(true);
+    } else {
+      logout();
+      setshow(true);
+    }
+  };
   return (
     <>
-      <div className={style.mainNav}>
-        <div className={style.InnerNav}>
-          <div className={style.left}>Logo</div>
-          <div className={style.right}>
-            <FaCartPlus />
-            <IoMdLogIn onClick={handlemodal} />
+      <div className='container absolute  bg-teal-950 text-white'>
+        <div className='flex top-4 left-0 right-0 justify-between p-4 '>
+          <div className=''>
+            <h4 className='tex text-2xl font-bold'>Logo</h4>
+          </div>
+          <div className='flex items-center gap-x-6 text-2xl'>
+            <MdLocalGroceryStore />
+            <FaUserTie onClick={() => handlshow()} />
           </div>
         </div>
+        <div className={show ? style.showview : style.hideview}>
+          <Link to='/mystore'>Cart</Link>
+          <Link to='/profile'>profile</Link>
+          <Link to='/category'>View Category</Link>
+          <button
+            className='mt-2 bg-red-400 text-white pl-1 pr-1 cursor-pointer'
+            onClick={handlelogout}
+          >
+            {loggedUser ? 'Logout' : 'Login'}
+          </button>
+        </div>
       </div>
-      <div className={ismodal ? style.modalview : style.modalhide}>
-        <p>My store</p>
-        <Link to='/profile'>Profile</Link>
-        <p>
-          {loggedUser !== undefined ? (
-            <button onClick={handlelogout}>Logout</button>
-          ) : (
-            <button size='sm' variant='secondary' onClick={history('/login')}>
-              Login
-            </button>
-          )}
-        </p>
-      </div>
-      <Product />
-      <Product />
-      <Product />
+      <div className=''></div>
     </>
   );
 }

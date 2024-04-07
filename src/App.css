@@ -26,9 +26,9 @@
 }
 .craouseimg {
   margin-top: 33px;
-  width: 40vw;
+  width: 100%;
   margin: auto;
-  height: 33vh;
+  height: 56vh;
   object-fit: cover;
   position: relative;
   top: 12px;
@@ -57,5 +57,12 @@
 .card img {
   width: 200px;
   object-fit: fill;
+  margin: auto;
+}
+.maincrouser {
+  width: 100%;
+}
+.innercraouser {
+  width: 50%;
   margin: auto;
 }

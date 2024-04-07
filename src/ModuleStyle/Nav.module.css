@@ -1,68 +1,23 @@
-.mainNav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background: darkgray;
-}
-.InnerNav {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  margin-left: 40px;
-}
-.left {
-  font-size: 28px;
-  font-weight: 500;
-  background-color: aqua;
-  width: 90px;
-  border-radius: 5px;
-}
-.right {
-  display: flex;
-  column-gap: 50px;
-  align-items: center;
-  font-size: 28px;
-  margin-right: 29px;
-}
-.modalview {
-  position: relative;
-  float: right;
-  top: 62px;
-  right: 10px;
-  width: 198px;
-  height: 120px;
-  border: 2px solid red;
-  text-align: justify;
-  padding: 10px;
-  z-index: 99;
-}
-.modalview span {
-  color: gray;
-  font-weight: 400;
-}
-.Innerhide {
+.showview {
   display: none;
 }
-.profileMain {
+.hideview {
   position: absolute;
-  top: 10%;
-  left: 0;
-  right: 0;
-  width: 400px;
+  right: 20px;
+  width: 250px;
+  color: black;
+  z-index: 99;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+  text-align: left;
+  font-weight: 500;
   padding: 10px;
-  background-color: cadetblue;
-  margin: auto;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  background-color: gray;
 }
-.profileMain a {
-  color: aqua;
-}
-.profileMain img {
-  width: 200px;
-  object-fit: cover;
-  margin: auto;
-  border-radius: 50%;
-}
-.profileinner {
+
+.hideview a {
+  text-decoration: none;
+  display: block;
+  text-align: left;
 }

@@ -1,7 +1,7 @@
 import axios from 'axios';
-
+// ordersystem.onrender.com/
 export const Axios = axios.create({
-  baseURL: 'https://ordersystem.onrender.com/',
+  baseURL: ' http://localhost:6060',
   headers: { 'Content-Type': 'application/json' },
 });
 Axios.interceptors.request.use(

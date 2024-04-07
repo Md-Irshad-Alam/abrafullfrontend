@@ -21,36 +21,42 @@ function CategoryForm() {
     }
   };
   return (
-    <div>
-      <form action='' onSubmit={handlesubmit}>
-        <Form.Floating className='mt-3 mb-3'>
-          <Form.Control
-            id='floatingInputCustom'
-            type='text'
-            value={name}
-            onChange={(event) => setname(event.target.value)}
-          />
-          <label htmlFor='floatingInputCustom'> Name</label>
-        </Form.Floating>
-        <Form.Floating className='mt-3 mb-3'>
-          <Form.Control
-            id='floatingInputCustom'
-            type='text'
-            value={slug}
-            onChange={(event) => setslug(event.target.value)}
-          />
-          <label htmlFor='floatingInputCustom'> Slug</label>
-        </Form.Floating>
+    <div className='container absolute top-28 '>
+      <div className=' w-30 m-auto mt-28'>
+        <form action='' onSubmit={handlesubmit}>
+          <Form.Floating className='mt-3 mb-3'>
+            <Form.Control
+              id='floatingInputCustom'
+              type='text'
+              value={name}
+              onChange={(event) => setname(event.target.value)}
+            />
+            <label htmlFor='floatingInputCustom'> Name</label>
+          </Form.Floating>
+          <Form.Floating className='mt-3 mb-3'>
+            <Form.Control
+              id='floatingInputCustom'
+              type='text'
+              value={slug}
+              onChange={(event) => setslug(event.target.value)}
+            />
+            <label htmlFor='floatingInputCustom'> Slug</label>
+          </Form.Floating>
 
-        <Form.Floating className='mt-3 mb-3'>
-          <Form.Control
-            type='file'
-            onChange={(event) => setimage(event.target.files[0])}
-          />
-        </Form.Floating>
+          <Form.Floating className='mt-3 mb-3'>
+            <Form.Control
+              type='file'
+              onChange={(event) => setimage(event.target.files[0])}
+            />
+          </Form.Floating>
 
-        <Form.Control type='submit' value='Submit' />
-      </form>
+          <Form.Control
+            type='submit'
+            value='Submit'
+            className='bg-teal-300 font-bold'
+          />
+        </form>
+      </div>
     </div>
   );
 }

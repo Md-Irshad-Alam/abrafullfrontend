@@ -1,18 +1,13 @@
 import React, { useContext, useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import {
-  Container,
-  Button,
-  Row,
-  Col,
-  Input,
-  InputGroup,
-  Card,
-} from 'react-bootstrap';
+
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import style from '../../ModuleStyle/product.module.css';
 import { AuthContext } from '../../contexts/MyContxt';
 import { useParams } from 'react-router-dom';
 import { addproduct } from '../../contexts/User';
+
 function ProductForm() {
   const [inputval, setinputval] = useState({});
   const [image, setimage] = useState(null);
@@ -20,7 +15,8 @@ function ProductForm() {
     const { name, value } = event.target;
     setinputval({ ...inputval, [name]: value });
   };
-  const { loggedUser, categories } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { loggedUser } = useContext(AuthContext);
   var { id } = useParams();
 
   const handlesubmit = (event) => {
@@ -35,7 +31,12 @@ function ProductForm() {
         formdata.append('ownerId', loggedUser._id);
         formdata.append('categoryId', id);
         formdata.append('image', image);
-        addproduct(formdata);
+        addproduct(formdata)
+          .then((res) => {
+            toast(' Product added  successful');
+            navigate('/product');
+          })
+          .catch((error) => toast('Product not added !'));
       } else {
         window.alert('invalid input!');
       }
@@ -44,7 +45,7 @@ function ProductForm() {
     }
   };
   return (
-    <div className='container'>
+    <div className='container absolute top-28'>
       <div className={style.productinner}>
         <form action='' onSubmit={handlesubmit}>
           <Form.Floating className='mt-3 mb-3'>
@@ -81,7 +82,11 @@ function ProductForm() {
               onChange={(ev) => setimage(ev.target.files[0])}
             />
           </Form.Floating>
-          <Form.Control type='submit' value='Submit' />
+          <Form.Control
+            type='submit'
+            value='Submit'
+            className='bg-teal-500 font-bold'
+          />
         </form>
       </div>
     </div>

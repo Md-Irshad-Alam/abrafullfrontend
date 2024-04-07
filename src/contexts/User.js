@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { Axios } from './index';
+import { toast } from 'react-toastify';
+
 export async function LoginAPI(email, password) {
-  return Axios.post('https://ordersystem.onrender.com/auth/login', {
+  return Axios.post('auth/login', {
     email,
     password,
   });
 }
 export async function registerApi({ formdata }) {
-  return Axios.post('https://ordersystem.onrender.com/auth/register', {
+  return Axios.post('auth/register', {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
@@ -16,13 +18,13 @@ export async function registerApi({ formdata }) {
 }
 
 export const getusers = () => {
-  return Axios.get('https://ordersystem.onrender.com/auth/getuser');
+  return Axios.get('auth/getuser');
 };
 export const logout = () => {
-  return Axios.get('https://ordersystem.onrender.com/auth/logout');
+  return Axios.get('auth/logout');
 };
 export const Addcategory = (formdata) => {
-  Axios.post('https://ordersystem.onrender.com/categories/add', formdata, {
+  Axios.post('categories/add', formdata, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
@@ -37,14 +39,12 @@ export const GetsingleCategory = (catoId) => {
   return Axios.get(`categories/${catoId}`);
 };
 export const addproduct = (formdata) => {
-  Axios.post('https://ordersystem.onrender.com/product/add', formdata, {
+  return Axios.post('product/add', formdata, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
-  })
-    .then((res) => window.alert(' Product added  successful'))
-    .catch((error) => console.log(error));
+  });
 };
 export const getproduct = (catoId) => {
-  return Axios.get('https://ordersystem.onrender.com/product');
+  return Axios.get('product');
 };

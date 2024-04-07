@@ -3,26 +3,33 @@
   margin: auto;
 }
 .cardInner {
-  position: absolute;
   width: 80%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   margin: auto;
-  border: 2px solid red;
+  column-gap: 10px;
+  row-gap: 20px;
+  overflow: hidden;
+  padding: 10px;
+  margin-top: 3rem;
 }
 .cardInner img {
-  width: 150px;
-  height: 160px;
+  width: 100%;
+  height: 200px;
   object-fit: cover;
   margin: auto;
+  padding: 2px;
 }
 .cardcontent {
-  width: 300px;
-  height: 320px;
-  border: 2px solid red;
-  padding: 5px;
+  padding: 10px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 .content {
   text-align: left;
   font-size: 18px;
+  padding: 10px;
 }
 .btn {
   background-color: teal;

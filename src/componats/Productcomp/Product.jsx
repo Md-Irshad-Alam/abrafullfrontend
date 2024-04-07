@@ -3,12 +3,16 @@ import style from '../../ModuleStyle/product.module.css';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/MyContxt';
+import CategorySlider from '../Slider';
 function Product() {
   const history = useNavigate();
   const { product, show, setshow } = useContext(AuthContext);
 
   return (
-    <div className='container'>
+    <div className='container absolute top-20 '>
+      <div>
+        <CategorySlider />
+      </div>
       <div className={style.cardInner}>
         {product !== undefined &&
           product.map((ele, id) => {
